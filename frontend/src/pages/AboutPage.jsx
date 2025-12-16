@@ -19,7 +19,7 @@ const AboutPage = () => {
 					animate={{ opacity: 1 }}
 					transition={{ delay: 0.2 }}
 				>
-					Leemart E-Shop is your trusted online marketplace for quality fashion, accessories, and everyday essentials. We are committed to delivering value, style, and convenience to customers across Kenya.
+					Leemart Enterprises is your trusted online marketplace for quality fashion, accessories, and everyday essentials. We are committed to delivering value, style, and convenience to customers across Kenya.
 				</motion.p>
 
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
