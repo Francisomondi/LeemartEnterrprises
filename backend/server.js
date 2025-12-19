@@ -23,10 +23,27 @@ const __dirname = path.resolve();
 app.use(express.json({ limit: "10mb" })); 
 
 app.use(cookieParser());
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://leemartenterrprises.onrender.com",
+];
+
 app.use(cors({
-	origin: "http://localhost:5173",
-	methods: ["GET", "POST"],
-	credentials: true,
+  origin: (origin, callback) => {
+    // allow requests with no origin (Postman, MPESA callbacks, server-to-server)
+    if (!origin) return callback(null, true);
+
+    if (
+      allowedOrigins.includes(origin) ||
+      origin.endsWith(".onrender.com")
+    ) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
 }));
 
 app.use("/api/auth", authRoutes);
