@@ -30,7 +30,27 @@ const allowedOrigins = [
   "https://leemartenterrprises.onrender.com",
 ];
 
-app.use(cors());
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // allow REST tools like Postman
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
+// REQUIRED for preflight
+app.options("*", cors());
+
 
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);

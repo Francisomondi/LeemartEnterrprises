@@ -64,7 +64,7 @@ const OrderSummary = () => {
 	setMpesaMessage("");
 
 	try {
-		const res = await axios.post("/mpesa/stk-push",
+		const res = await axios.post("/mpesa/stk",
 			{
 				phone: formattedPhone,
 				amount: total,
