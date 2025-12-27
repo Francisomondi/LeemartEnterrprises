@@ -143,3 +143,32 @@ export const getProfile = async (req, res) => {
 		res.status(500).json({ message: "Server error", error: error.message });
 	}
 };
+
+export const updateProfile = async (req, res) => {
+  const { name, phone } = req.body;
+
+  let formattedPhone = phone.trim();
+
+// Accept 07XXXXXXXX or 01XXXXXXXX
+if (/^0(7|1)\d{8}$/.test(formattedPhone)) {
+  formattedPhone = "254" + formattedPhone.slice(1);
+}
+
+// Accept 2547XXXXXXXX or 2541XXXXXXXX
+else if (!/^254(7|1)\d{8}$/.test(formattedPhone)) {
+  return res.status(400).json({
+    message: "Invalid Safaricom phone number",
+  });
+}
+
+// ✅ formattedPhone is now ALWAYS 254XXXXXXXXX
+
+
+  const user = await User.findByIdAndUpdate(
+    req.user._id,
+    { name, phone },
+    { new: true }
+  );
+
+  res.json(user);
+};

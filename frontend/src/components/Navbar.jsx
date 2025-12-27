@@ -67,6 +67,8 @@ const Navbar = () => {
 							</Link>
 						)}
 
+						
+
 						{user ? (
 							<button
 								onClick={logout}
@@ -92,6 +94,10 @@ const Navbar = () => {
 									Login
 								</Link>
 							</>
+						)}
+
+						{user && (
+							<Link to="/profile">Profile</Link>
 						)}
 					</nav>
 

@@ -70,6 +70,26 @@ export const useUserStore = create((set, get) => ({
 			throw error;
 		}
 	},
+	fetchProfile: async () => {
+    try {
+      const res = await axios.get("/auth/profile");
+      set({ user: res.data });
+    } catch {
+      set({ user: null });
+    }
+  },
+  updateProfile: async (data) => {
+    try {
+      set({ loading: true });
+      const res = await axios.put("/auth/profile", data);
+      set({ user: res.data });
+      toast.success("Profile updated");
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Update failed");
+    } finally {
+      set({ loading: false });
+    }
+  },
 }));
 
 // TODO: Implement the axios interceptors for refreshing access token
