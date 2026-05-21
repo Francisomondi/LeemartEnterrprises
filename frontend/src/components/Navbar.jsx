@@ -206,23 +206,27 @@ const Navbar = () => {
                 {/* PROFILE */}
                 <Link
                   to="/profile"
-                  className="flex items-center gap-3 rounded-lg px-2 py-1 transition hover:bg-gray-800"
+                  className="flex items-center gap-3 rounded-lg px-2 py-1 transition hover:bg-gray-800 overflow-hidden"
                 >
                   <img
-                    src={
-                      user.avatar ||
-                      "/default-avatar.png"
-                    }
+                    src={user.avatar || "/default-avatar.png"}
                     alt={user.name || "User"}
-                    className="h-10 w-10 rounded-full border-2 border-emerald-500 object-cover"
+                    className="h-10 w-10 flex-shrink-0 rounded-full border-2 border-emerald-500 object-cover"
                   />
 
-                  <div className="hidden max-w-[140px] flex-col md:flex">
+                  <div className="hidden min-w-0 max-w-[140px] flex-col md:flex">
                     <span className="truncate text-sm font-semibold text-white">
-                      {user.name}
+                      {user.name
+                        ?.split(" ")
+                        .map((part, index) =>
+                          index === 0
+                            ? part
+                            : `${part.charAt(0).toUpperCase()}.`
+                        )
+                        .join(" ")}
                     </span>
 
-                    <span className="text-xs text-gray-400">
+                    <span className="truncate text-xs text-gray-400">
                       My Profile
                     </span>
                   </div>
@@ -231,7 +235,7 @@ const Navbar = () => {
                 {/* LOGOUT */}
                 <button
                   onClick={handleLogout}
-                  className="flex items-center gap-2 rounded-md bg-gray-700 px-4 py-2 text-sm text-white transition hover:bg-gray-600"
+                  className="flex items-center gap-2 rounded-md bg-gray-700 px-4 py-2 text-sm text-white transition hover:bg-gray-600 ml-5"
                 >
                   <LogOut size={18} />
                   Logout

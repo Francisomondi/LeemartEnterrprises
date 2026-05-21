@@ -13,7 +13,7 @@ const categories = [
   "suits",
   "bags",
   "dresses",
-  "two piece",
+  "twopiece",
   "hoodies",
   "Shorts",
   "Hats",

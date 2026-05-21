@@ -92,7 +92,7 @@ const ProfilePage = () => {
       }
     );
 
-    console.log(res.data.orders);
+    //console.log(res.data.orders);
 
     // ONLY SUCCESSFUL / PAID ORDERS
     const successfulOrders =
