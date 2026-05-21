@@ -15,7 +15,7 @@ const categories = [
   { href: "/suits", name: "Suits", imageUrl: "/suits.jpg" },
   { href: "/bags", name: "Bags", imageUrl: "/bags.jpg" },
   { href: "/dresses", name: "Dresses", imageUrl: "/dresses.jpg" },
-  { href: "/twopiece", name: "TwoPiece", imageUrl: "/twopiece.jpg" },
+  { href: "/twopiece", name: "two piece", imageUrl: "/twopiece.jpg" },
   { href: "/hoodies", name: "Hoodies", imageUrl: "/hoodies.jpg" },
   { href: "/shorts", name: "Shorts", imageUrl: "/shorts.jpg" },
   { href: "/hats", name: "Hats", imageUrl: "/hats.jpeg" },

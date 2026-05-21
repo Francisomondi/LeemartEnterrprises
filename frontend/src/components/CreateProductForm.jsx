@@ -13,8 +13,8 @@ const categories = [
   "suits",
   "bags",
   "dresses",
-  "two-piece",
-  "Woodies",
+  "two piece",
+  "hoodies",
   "Shorts",
   "Hats",
 ];
@@ -22,7 +22,7 @@ const categories = [
 // 🔹 SIZE OPTIONS
 const SHOE_SIZES = Array.from({ length: 9 }, (_, i) => i + 37);
 const CLOTHING_SIZES = ["S", "M", "L", "XL", "2XL"];
-const COLORS = ["Black", "White", "Brown", "Red", "Blue"];
+const COLORS = ["Black", "White", "Brown", "Red", "Blue","Green", "Yellow", "Purple", "Pink", "Gray"];
 
 const CreateProductForm = () => {
   const [newProduct, setNewProduct] = useState({
