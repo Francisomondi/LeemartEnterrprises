@@ -61,26 +61,53 @@ const ProfilePage = () => {
     }
   };
 
-  const handleAvatarChange = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    setAvatarLoading(true);
+const handleAvatarChange = async (e) => {
+  const file = e.target.files[0];
 
+  if (!file) return;
+
+  setAvatarLoading(true);
+
+  try {
     const formData = new FormData();
+
     formData.append("avatar", file);
 
-    try {
-      const res = await axiosInstance.put("/user/avatar", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-      toast.success("Avatar updated!");
-      fetchProfile(); // Refresh user data
-    } catch {
-      toast.error("Failed to upload avatar");
-    } finally {
-      setAvatarLoading(false);
-    }
-  };
+    // UPLOAD IMAGE
+    const res = await axiosInstance.put(
+      "/user/avatar",
+      formData,
+      {
+        headers: {
+          "Content-Type":
+            "multipart/form-data",
+        },
+      }
+    );
+
+    // GET UPDATED AVATAR URL
+    const avatarUrl = res.data.avatar;
+
+    // SAVE TO STORE / DB
+    await updateProfile({
+      avatar: avatarUrl,
+    });
+
+    toast.success("Avatar updated!");
+
+    // REFRESH PROFILE
+    await fetchProfile();
+
+  } catch (error) {
+    console.error(error);
+
+    toast.error(
+      "Failed to upload avatar"
+    );
+  } finally {
+    setAvatarLoading(false);
+  }
+};
 
  const fetchOrders = async () => {
   try {
