@@ -78,9 +78,9 @@ const Navbar = () => {
             className="flex items-center flex-shrink-0"
           >
             <img
-              src="/logo.png"
+              src="/favicon.jpg"
               alt="Leemart Logo"
-              className="h-11 w-auto object-contain md:h-14"
+              className="h-11 w-auto object-contain md:h-14 "
               loading="lazy"
             />
           </Link>

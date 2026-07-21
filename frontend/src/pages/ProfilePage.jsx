@@ -111,7 +111,6 @@ const handleAvatarChange = async (e) => {
 
  const fetchOrders = async () => {
   try {
-
     const res = await axiosInstance.get(
       "/orders/my-orders",
       {
