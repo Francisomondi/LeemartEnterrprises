@@ -35,10 +35,22 @@ const HomePage = () => {
       {/* Hero Section */}
    
       <section
-        className="relative h-[90vh] flex items-center justify-center bg-cover bg-center"
+         className="
+          relative
+          h-[250px]
+          sm:h-[400px]
+          md:h-[520px]
+          lg:h-[620px]
+          xl:h-[720px]
+          bg-no-repeat
+          bg-center
+          bg-contain
+        "
         style={{
-          backgroundImage: "url('/banner.png')", // your banner image
-        }}
+          backgroundImage: "url('/banner.png')",
+          backgroundSize: "contain",
+          backgroundPosition: "center",
+        }}  
       >
         {/* Transparent Overlay */}
         <div className="absolute inset-0 bg-black/50"></div>
@@ -47,30 +59,25 @@ const HomePage = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-emerald-900/40 via-black/20 to-transparent"></div>
 
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 text-center sm:text-center">
-          
+        <div className="relative z-10 w-full h-full flex items-center justify-center px-6">
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+          <a
+            href="/products"
+            className="px-8 py-4 bg-emerald-600 hover:bg-emerald-700 rounded-full font-semibold transition shadow-lg"
+          >
+            Shop Now
+          </a>
 
-         
-
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <a
-              href="/products"
-              className="px-8 py-4 bg-emerald-600 hover:bg-emerald-700 rounded-full font-semibold transition"
-            >
-              Shop Now
-            </a>
-
-            <a
-              href="https://wa.me/254119712745"
-              target="_blank"
-              rel="noreferrer"
-              className="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/30 hover:bg-white/20 rounded-full font-semibold transition"
-            >
-              WhatsApp Us
-            </a>
-          </div>
-
+          <a
+            href="https://wa.me/254119712745"
+            target="_blank"
+            rel="noreferrer"
+            className="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/30 hover:bg-white/20 rounded-full font-semibold transition"
+          >
+            WhatsApp Us
+          </a>
         </div>
+      </div>
       </section>
 
       {/* Categories Section */}
