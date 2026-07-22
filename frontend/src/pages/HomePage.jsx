@@ -64,9 +64,9 @@ const HomePage = () => {
           <a
             href="/products"
             className="
-              px-5 py-2.5
+              px-4 py-2
               text-sm
-              sm:px-8 sm:py-4
+              sm:px-4 sm:py-2
               sm:text-base
               bg-emerald-600
               hover:bg-emerald-700
@@ -86,7 +86,7 @@ const HomePage = () => {
             className="
               px-5 py-2.5
               text-sm
-              sm:px-8 sm:py-4
+              sm:px-4 sm:py-2
               sm:text-base
               bg-white/10
               backdrop-blur-md
