@@ -10,7 +10,7 @@ import axios from "axios";
 
 
 const ProfilePage = () => {
-  const { user, fetchProfile, updateProfile, loading } = useUserStore();
+  const { user, fetchProfile, updateProfile, loading , updateAvatar} = useUserStore();
   const [form, setForm] = useState({ name: "", phone: "" });
   const [orders, setOrders] = useState([]);
   const [transactions, setTransactions] = useState([]);
@@ -62,48 +62,19 @@ const ProfilePage = () => {
   };
 
 const handleAvatarChange = async (e) => {
-  const file = e.target.files[0];
-
+  const file = e.target.files?.[0];
   if (!file) return;
 
   setAvatarLoading(true);
 
   try {
-    const formData = new FormData();
-
-    formData.append("avatar", file);
-
-    // UPLOAD IMAGE
-    const res = await axiosInstance.put(
-      "/user/avatar",
-      formData,
-      {
-        headers: {
-          "Content-Type":
-            "multipart/form-data",
-        },
-      }
-    );
-
-    // GET UPDATED AVATAR URL
-    const avatarUrl = res.data.avatar;
-
-    // SAVE TO STORE / DB
-    await updateProfile({
-      avatar: avatarUrl,
-    });
-
-    toast.success("Avatar updated!");
-
-    // REFRESH PROFILE
+    await updateAvatar(file);
     await fetchProfile();
 
+    toast.success("Avatar updated successfully!");
   } catch (error) {
     console.error(error);
-
-    toast.error(
-      "Failed to upload avatar"
-    );
+    toast.error("Failed to upload avatar.");
   } finally {
     setAvatarLoading(false);
   }
@@ -165,22 +136,122 @@ const fetchTransactions = async () => {
 
       {/* User Info & Avatar */}
       <div className="bg-gray-900 shadow rounded-lg p-6 md:p-10 flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
-        <div className="flex flex-col items-center space-y-3">
-          <img
-            src={user.avatar || "/default-avatar.png"}
-            alt="Avatar"
-            className="w-28 h-28 rounded-full object-cover border-2 border-emerald-500"
+        <div className="flex flex-col items-center">
+
+  <div className="relative group">
+
+    <img
+      src={user.avatar || "/default-avatar.png"}
+      alt={user.name}
+      className="
+        w-36
+        h-36
+        rounded-full
+        object-cover
+        border-4
+        border-emerald-500
+        shadow-lg
+      "
+    />
+
+    <label
+      className="
+        absolute
+        bottom-1
+        right-1
+        bg-emerald-600
+        hover:bg-emerald-700
+        w-10
+        h-10
+        rounded-full
+        flex
+        items-center
+        justify-center
+        cursor-pointer
+        shadow-lg
+        transition
+      "
+    >
+      {avatarLoading ? (
+        <svg
+          className="animate-spin h-5 w-5 text-white"
+          viewBox="0 0 24 24"
+          fill="none"
+        >
+          <circle
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            strokeWidth="3"
+            opacity=".25"
           />
-          <label className="cursor-pointer text-sm text-emerald-400 hover:text-emerald-300">
-            {avatarLoading ? "Uploading..." : "Change Avatar"}
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleAvatarChange}
-              className="hidden"
-            />
-          </label>
-        </div>
+          <path
+            d="M22 12a10 10 0 0 1-10 10"
+            stroke="currentColor"
+            strokeWidth="3"
+          />
+        </svg>
+      ) : (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-5 w-5 text-white"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M15.232 5.232l3.536 3.536M16 3l5 5M4 20l4.586-1.146a2 2 0 00.949-.535L19 9a2.828 2.828 0 10-4-4l-9.535 9.535a2 2 0 00-.535.949L4 20z"
+          />
+        </svg>
+      )}
+
+      <input
+        type="file"
+        accept="image/*"
+        onChange={handleAvatarChange}
+        className="hidden"
+      />
+    </label>
+  </div>
+
+  <h3 className="mt-4 text-lg font-semibold text-white">
+    {user.name}
+  </h3>
+
+  <p className="text-sm text-gray-400">
+    {user.email}
+  </p>
+
+  <label
+    className="
+      mt-4
+      px-5
+      py-2
+      rounded-lg
+      bg-emerald-600
+      hover:bg-emerald-700
+      text-white
+      cursor-pointer
+      transition
+      text-sm
+      font-medium
+    "
+  >
+    {avatarLoading ? "Uploading..." : "Choose New Avatar"}
+
+    <input
+      type="file"
+      accept="image/*"
+      onChange={handleAvatarChange}
+      className="hidden"
+    />
+  </label>
+
+</div>
 
         <div className="flex-1 grid md:grid-cols-2 gap-6">
           <div>

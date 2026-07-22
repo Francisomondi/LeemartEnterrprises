@@ -1,6 +1,7 @@
 import { redis } from "../lib/redis.js";
 import User from "../models/user.model.js";
 import jwt from "jsonwebtoken";
+import cloudinary from "../lib/cloudinary.js";
 
 const generateTokens = (userId) => {
 	const accessToken = jwt.sign({ userId }, process.env.ACCESS_TOKEN_SECRET, {
@@ -54,6 +55,7 @@ export const signup = async (req, res) => {
 			name: user.name,
 			email: user.email,
 			phone: user.phone,
+			avatar: user.avatar,
 			role: user.role,
 		});
 	} catch (error) {
@@ -76,6 +78,7 @@ export const login = async (req, res) => {
 				_id: user._id,
 				name: user.name,
 				email: user.email,
+				avatar: user.avatar,
 				role: user.role,
 			});
 		} else {
@@ -172,3 +175,55 @@ else if (!/^254(7|1)\d{8}$/.test(formattedPhone)) {
 
   res.json(user);
 };
+
+export const updateAvatar = async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({
+        message: "No image uploaded",
+      });
+    }
+
+    // Upload avatar to Cloudinary
+    const result = await new Promise((resolve, reject) => {
+      const stream = cloudinary.uploader.upload_stream(
+        {
+          folder: "avatars",
+        },
+        (error, result) => {
+          if (error) return reject(error);
+          resolve(result);
+        }
+      );
+
+      stream.end(req.file.buffer);
+    });
+
+    // Save Cloudinary URL to MongoDB
+    const user = await User.findByIdAndUpdate(
+      req.user._id,
+      {
+        avatar: result.secure_url,
+      },
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+
+    console.log("Avatar updated:", user.avatar);
+
+    return res.status(200).json(user);
+  } catch (error) {
+    console.error("Avatar upload error:", error);
+
+    return res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+
+
+
+

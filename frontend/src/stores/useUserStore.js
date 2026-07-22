@@ -90,6 +90,27 @@ export const useUserStore = create((set, get) => ({
       set({ loading: false });
     }
   },
+  updateAvatar: async (file) => {
+	try {
+	  set({ loading: true });
+	  const formData = new FormData();
+	  formData.append("avatar", file);	
+
+	  const res = await axios.put("/auth/avatar", formData, {
+		headers: {
+		  "Content-Type": "multipart/form-data",
+		},
+	  });
+	  set({ user: res.data });
+	  toast.success("Avatar updated successfully!");
+	} catch (error) {
+	  console.error(error);
+	  toast.error("Failed to upload avatar.");
+	} finally {
+	  set({ loading: false });
+	}
+  }
+
 }));
 
 // TODO: Implement the axios interceptors for refreshing access token
@@ -126,3 +147,9 @@ axios.interceptors.response.use(
 		return Promise.reject(error);
 	}
 );
+
+
+
+
+
+
