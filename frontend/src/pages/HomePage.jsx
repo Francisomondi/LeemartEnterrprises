@@ -60,10 +60,21 @@ const HomePage = () => {
 
         {/* Content */}
         <div className="relative z-10 w-full h-full flex items-center justify-center px-6">
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+       <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4">
           <a
             href="/products"
-            className="px-8 py-4 bg-emerald-600 hover:bg-emerald-700 rounded-full font-semibold transition shadow-lg"
+            className="
+              px-5 py-2.5
+              text-sm
+              sm:px-8 sm:py-4
+              sm:text-base
+              bg-emerald-600
+              hover:bg-emerald-700
+              rounded-full
+              font-semibold
+              transition
+              shadow-lg
+            "
           >
             Shop Now
           </a>
@@ -72,7 +83,20 @@ const HomePage = () => {
             href="https://wa.me/254119712745"
             target="_blank"
             rel="noreferrer"
-            className="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/30 hover:bg-white/20 rounded-full font-semibold transition"
+            className="
+              px-5 py-2.5
+              text-sm
+              sm:px-8 sm:py-4
+              sm:text-base
+              bg-white/10
+              backdrop-blur-md
+              border
+              border-white/30
+              hover:bg-white/20
+              rounded-full
+              font-semibold
+              transition
+            "
           >
             WhatsApp Us
           </a>
