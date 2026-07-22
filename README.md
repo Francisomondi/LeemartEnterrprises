@@ -1,4 +1,4 @@
-# 🛒 Leemart E-Commerce Platform
+#  Leemart E-Commerce Platform
 
 A full-stack e-commerce platform built for the Kenyan market, featuring seamless **MPESA payments**, modern UI, and a powerful admin dashboard.
 
@@ -7,7 +7,7 @@ A full-stack e-commerce platform built for the Kenyan market, featuring seamless
 
 ---
 
-## 🚀 Overview
+##  Overview
 
 Leemart is a scalable and production-ready e-commerce application that enables users to browse products, add items to cart, and complete purchases using **MPESA STK Push**.
 
@@ -15,7 +15,7 @@ It includes a robust admin system for managing products, tracking orders, analyz
 
 ---
 
-## ✨ Features
+##  Features
 
 ### 🧑‍💻 User Features
 
@@ -29,7 +29,7 @@ It includes a robust admin system for managing products, tracking orders, analyz
 
 ---
 
-### 🛠️ Admin Features
+###  Admin Features
 
 * Create, update, and delete products
 * View all MPESA transactions
@@ -71,8 +71,8 @@ It includes a robust admin system for managing products, tracking orders, analyz
 
 ### Deployment
 
-* Render (Backend)
-* Vercel (Frontend)
+* Render 
+  
 
 ---
 
