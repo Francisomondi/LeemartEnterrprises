@@ -42,9 +42,11 @@ const HomePage = () => {
           md:h-[520px]
           lg:h-[620px]
           xl:h-[720px]
-          bg-no-repeat
+          bg-no-repe  at
           bg-center
           bg-contain
+          m-0
+          p-0
         "
         style={{
           backgroundImage: "url('/banner.png')",
@@ -105,11 +107,11 @@ const HomePage = () => {
       </section>
 
       {/* Categories Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-2">
         <h2 className="text-3xl font-semibold text-emerald-400 mb-6 text-center mt-6">
           Shop by Category
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
           {categories.map((category) => (
             <CategoryItem 
               category={category} 
