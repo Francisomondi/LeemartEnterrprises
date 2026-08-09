@@ -42,7 +42,7 @@ const HomePage = () => {
           md:h-[520px]
           lg:h-[620px]
           xl:h-[720px]
-          bg-no-repe  at
+          bg-no-repeat
           bg-center
           bg-contain
           m-0

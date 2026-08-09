@@ -71,7 +71,7 @@ const Navbar = () => {
   return (
     <header className="fixed top-0 left-0 z-50 w-full border-b border-emerald-900/40 bg-gray-900/95 backdrop-blur-md shadow-lg">
       <div className="container mx-auto px-4">
-        <div className="flex h-auto min-h-16 flex-wrap items-center justify-between gap-3 py-2 md:h-16 md:flex-nowrap md:py-0">
+        <div className="flex m-0 p-0 h-auto min-h-16 flex-wrap items-center justify-between gap-3 py-2 md:h-16 md:flex-nowrap md:py-0">
           {/* LOGO */}
           <Link
             to="/"
