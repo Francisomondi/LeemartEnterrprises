@@ -107,15 +107,16 @@ const HomePage = () => {
       </section>
 
       {/* Categories Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-2">
-        <h2 className="text-3xl font-semibold text-emerald-400 mb-6 text-center mt-6">
+      <section className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 mb-2">
+        <h2 className="text-2xl sm:text-3xl font-semibold text-emerald-400 mb-4 sm:mb-6 text-center mt-4 sm:mt-6">
           Shop by Category
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-5">
           {categories.map((category) => (
-            <CategoryItem 
-              category={category} 
-              key={category.name} 
+            <CategoryItem
+              category={category}
+              key={category.name}
               className="transform hover:scale-105 transition duration-300 ease-in-out"
             />
           ))}
